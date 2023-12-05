@@ -23,6 +23,13 @@ public class TennisGameTests
         ScoreShouldBe("love all");
     }
 
+    [Test]
+    public void fifteen_love()
+    {
+        _tennisGame.AddFirstPlayerScore();
+        ScoreShouldBe("fifteen love");
+    }
+
     private void ScoreShouldBe(string expected)
     {
         Assert.That(_tennisGame.Score(), Is.EqualTo(expected));
