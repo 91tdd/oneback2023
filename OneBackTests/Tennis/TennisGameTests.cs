@@ -1,20 +1,30 @@
-﻿namespace OneBackTests.Tennis;
+﻿#region
+
+using OneBackComboTrainingWeb.Domains.Tennis;
+
+#endregion
+
+namespace OneBackTests.Tennis;
 
 [TestFixture]
 public class TennisGameTests
 {
+    private TennisGame _tennisGame = null!;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _tennisGame = new TennisGame();
+    }
+
     [Test]
     public void love_all()
     {
-        var tennisGame = new TennisGame();
-        Assert.AreEqual("love all", tennisGame.Score());
+        ScoreShouldBe("love all");
     }
-}
 
-public class TennisGame
-{
-    public string Score()
+    private void ScoreShouldBe(string expected)
     {
-        throw new NotImplementedException();
+        Assert.That(_tennisGame.Score(), Is.EqualTo(expected));
     }
 }
