@@ -7,14 +7,14 @@ using OneBackComboTrainingWeb.Domains.Tennis;
 namespace OneBackTests.Tennis;
 
 [TestFixture]
-public class TennisGameTests
+public class TennisBoxTests
 {
-    private TennisGame _tennisGame = null!;
+    private TennisBox _tennisBox = null!;
 
     [SetUp]
     public void SetUp()
     {
-        _tennisGame = new TennisGame("Eva", "Eric");
+        _tennisBox = new TennisBox("Eva", "Eric");
     }
 
     [Test]
@@ -23,87 +23,69 @@ public class TennisGameTests
         ScoreShouldBe("love all");
     }
 
-    [Test]
+    [Test(Description = "all to lookup")]
     public void fifteen_love()
     {
-        GivenFirstPlayerScore(1);
+        WhenFirstPlayerGoal();
         ScoreShouldBe("fifteen love");
     }
 
-    [Test]
+    [Test(Description = "lookup to lookup")]
     public void thirty_love()
     {
-        GivenFirstPlayerScore(2);
+        GivenFirstPlayerScore(1);
+        WhenFirstPlayerGoal();
         ScoreShouldBe("thirty love");
     }
 
-    [Test]
+    [Test(Description = "lookup to lookup")]
     public void forty_love()
     {
-        GivenFirstPlayerScore(3);
+        GivenFirstPlayerScore(2);
+        WhenFirstPlayerGoal();
         ScoreShouldBe("forty love");
     }
 
-    [Test]
-    public void love_fifteen()
-    {
-        GivenSecondPlayerScore(1);
-        ScoreShouldBe("love fifteen");
-    }
-
-    [Test]
-    public void love_thirty()
-    {
-        GivenSecondPlayerScore(2);
-        ScoreShouldBe("love thirty");
-    }
-
-    [Test]
+    [Test(Description = "lookup to all")]
     public void fifteen_all()
     {
         GivenFirstPlayerScore(1);
-        GivenSecondPlayerScore(1);
+        WhenSecondPlayerGoal();
         ScoreShouldBe("fifteen all");
     }
 
-    [Test]
-    public void thirty_all()
+    [Test(Description = "all to lookup")]
+    public void fifteen_thirty()
     {
-        GivenFirstPlayerScore(2);
-        GivenSecondPlayerScore(2);
-        ScoreShouldBe("thirty all");
+        GivenFirstPlayerScore(1);
+        GivenSecondPlayerScore(1);
+        WhenSecondPlayerGoal();
+        ScoreShouldBe("fifteen thirty");
     }
 
-    [Test]
+    [Test(Description = "lookup to deuce")]
     public void deuce()
     {
-        GivenFirstPlayerScore(3);
+        GivenFirstPlayerScore(2);
         GivenSecondPlayerScore(3);
+        WhenFirstPlayerGoal();
         ScoreShouldBe("deuce");
     }
 
-    [Test]
+    [Test(Description = "deuce to adv")]
     public void first_player_adv()
     {
         GivenDeuce();
-        GivenFirstPlayerScore(1);
+        WhenFirstPlayerGoal();
         ScoreShouldBe("Eva adv");
     }
 
-    [Test]
+    [Test(Description = "deuce to adv")]
     public void second_player_adv()
     {
         GivenDeuce();
-        GivenSecondPlayerScore(1);
+        WhenSecondPlayerGoal();
         ScoreShouldBe("Eric adv");
-    }
-
-    [Test]
-    public void second_player_win()
-    {
-        GivenDeuce();
-        GivenSecondPlayerScore(2);
-        ScoreShouldBe("Eric win");
     }
 
     private void GivenDeuce()
@@ -116,20 +98,30 @@ public class TennisGameTests
     {
         for (int i = 0; i < times; i++)
         {
-            _tennisGame.AddSecondPlayerScore();
+            _tennisBox.SecondPlayerGoal();
         }
+    }
+
+    private void WhenSecondPlayerGoal()
+    {
+        _tennisBox.SecondPlayerGoal();
+    }
+
+    private void WhenFirstPlayerGoal()
+    {
+        _tennisBox.FirstPlayerGoal();
     }
 
     private void GivenFirstPlayerScore(int times)
     {
         for (int i = 0; i < times; i++)
         {
-            _tennisGame.AddFirstPlayerScore();
+            _tennisBox.FirstPlayerGoal();
         }
     }
 
     private void ScoreShouldBe(string expected)
     {
-        Assert.That(_tennisGame.Score(), Is.EqualTo(expected));
+        Assert.AreEqual(expected, _tennisBox.Score());
     }
 }
