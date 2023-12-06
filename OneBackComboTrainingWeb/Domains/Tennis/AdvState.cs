@@ -8,19 +8,18 @@ public class AdvState : StateBase
 
     public override void NextState()
     {
-        throw new NotImplementedException();
+        if (_tennisBox.GetFirstPlayerScore() == _tennisBox.GetSecondPlayerScore())
+        {
+            GoToDeuceState();
+        }
+        else
+        {
+            GoToWinState();
+        }
     }
 
     public override string Score()
     {
-        var advPlayer = GetAdvPlayer();
-        return $"{advPlayer} adv";
-    }
-
-    private string GetAdvPlayer()
-    {
-        return _tennisBox.GetFirstPlayerScore() > _tennisBox.GetSecondPlayerScore()
-            ? _tennisBox.GetFirstPlayerName()
-            : _tennisBox.GetSecondPlayerName();
+        return $"{_tennisBox.GetAdvPlayer()} adv";
     }
 }

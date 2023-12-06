@@ -38,4 +38,26 @@ public abstract class StateBase
     {
         _tennisBox.ChangeState(new LookupState(_tennisBox));
     }
+
+    protected void GoToWinState()
+    {
+        _tennisBox.ChangeState(new WinState(_tennisBox));
+    }
+}
+
+public class TennisStateException : Exception
+{
+    public TennisStateException()
+    {
+    }
+
+    public TennisStateException(string? message) : base(message)
+    {
+    }
+
+    public TennisStateException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+
+    public TennisBox TennisBox { get; set; }
 }

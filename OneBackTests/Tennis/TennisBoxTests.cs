@@ -88,6 +88,36 @@ public class TennisBoxTests
         ScoreShouldBe("Eric adv");
     }
 
+    [Test(Description = "adv to deuce")]
+    public void adv_to_deuce()
+    {
+        GivenDeuce();
+        GivenSecondPlayerScore(1);
+
+        WhenFirstPlayerGoal();
+        ScoreShouldBe("deuce");
+    }
+
+    [Test(Description = "adv to win")]
+    public void adv_to_win()
+    {
+        GivenDeuce();
+        GivenSecondPlayerScore(1);
+
+        WhenSecondPlayerGoal();
+        ScoreShouldBe("Eric win");
+    }
+
+    [Test(Description = "lookup to win")]
+    public void lookup_to_win()
+    {
+        GivenFirstPlayerScore(3);
+        GivenSecondPlayerScore(1);
+
+        WhenFirstPlayerGoal();
+        ScoreShouldBe("Eva win");
+    }
+
     private void GivenDeuce()
     {
         GivenFirstPlayerScore(3);

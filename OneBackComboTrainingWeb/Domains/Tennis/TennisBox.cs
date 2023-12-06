@@ -26,19 +26,16 @@ public class TennisBox
         _currentState.NextState();
     }
 
-    public string GetFirstPlayerName()
+    public string GetAdvPlayer()
     {
-        return _firstPlayerName;
+        return GetFirstPlayerScore() > GetSecondPlayerScore()
+            ? _firstPlayerName
+            : _secondPlayerName;
     }
 
     public int GetFirstPlayerScore()
     {
         return _firstPlayerScore;
-    }
-
-    public string GetSecondPlayerName()
-    {
-        return _secondPlayerName;
     }
 
     public int GetSecondPlayerScore()
