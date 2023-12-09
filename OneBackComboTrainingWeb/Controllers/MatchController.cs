@@ -23,30 +23,30 @@ namespace OneBackComboTrainingWeb.Controllers
         public string UpdateMatchResult(int matchId, Event @event)
         {
             var match = _matchRepo.GetMatch(matchId);
-            UpdateBy(@event, match);
+            UpdateBy(@event, match.MatchResult);
 
             _matchRepo.UpdateMatchResult(match);
             return match.MatchResult.GetDisplayScore();
         }
 
-        private static void UpdateBy(Event @event, Match match)
+        private static void UpdateBy(Event @event, MatchResult matchResult)
         {
             switch (@event)
             {
                 case Event.HomeGoal:
-                    match.MatchResult.HomeGoal();
+                    matchResult.HomeGoal();
                     break;
                 case Event.AwayGoal:
-                    match.MatchResult.AwayGoal();
+                    matchResult.AwayGoal();
                     break;
                 case Event.NextPeriod:
-                    match.MatchResult.NextPeriod();
+                    matchResult.NextPeriod();
                     break;
                 case Event.CancelHomeGoal:
-                    match.MatchResult.CancelHomeGoal();
+                    matchResult.CancelHomeGoal();
                     break;
                 case Event.CancelAwayGoal:
-                    match.MatchResult.CancelAwayGoal();
+                    matchResult.CancelAwayGoal();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
