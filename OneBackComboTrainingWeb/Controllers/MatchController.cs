@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OneBackComboTrainingWeb.Enums;
 
 namespace OneBackComboTrainingWeb.Controllers
 {
@@ -11,5 +12,9 @@ namespace OneBackComboTrainingWeb.Controllers
     [ApiController]
     public class MatchController : ControllerBase
     {
+        public string UpdateMatchResult(int matchId, Event @event)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
