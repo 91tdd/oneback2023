@@ -16,21 +16,6 @@ public class MatchResult
         _matchResult = matchResult;
     }
 
-    public void AwayGoal()
-    {
-        _matchResult += "A";
-    }
-
-    public void CancelAwayGoal()
-    {
-        CancelGoal('A');
-    }
-
-    public void CancelHomeGoal()
-    {
-        CancelGoal('H');
-    }
-
     public string GetDisplayScore()
     {
         var homeScore = _matchResult.Count(c => c == 'H');
@@ -42,33 +27,6 @@ public class MatchResult
     public string GetResult()
     {
         return _matchResult;
-    }
-
-    public void HomeGoal()
-    {
-        _matchResult += "H";
-    }
-
-    public void NextPeriod()
-    {
-        _matchResult += ";";
-    }
-
-    private void CancelGoal(char score)
-    {
-        var isNextPeriod = false;
-        if (_matchResult.EndsWith(';'))
-        {
-            isNextPeriod = true;
-            _matchResult = _matchResult[..^1];
-        }
-
-        if (!_matchResult.EndsWith(score))
-        {
-            throw new MatchResultException() { MatchResult = this };
-        }
-
-        _matchResult = _matchResult[..^1] + (isNextPeriod ? ";" : "");
     }
 
     public void UpdateBy(Event @event)
@@ -93,5 +51,47 @@ public class MatchResult
             default:
                 throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
         }
+    }
+
+    private void AwayGoal()
+    {
+        _matchResult += "A";
+    }
+
+    private void CancelAwayGoal()
+    {
+        CancelGoal('A');
+    }
+
+    private void CancelGoal(char score)
+    {
+        var isNextPeriod = false;
+        if (_matchResult.EndsWith(';'))
+        {
+            isNextPeriod = true;
+            _matchResult = _matchResult[..^1];
+        }
+
+        if (!_matchResult.EndsWith(score))
+        {
+            throw new MatchResultException() { MatchResult = this };
+        }
+
+        _matchResult = _matchResult[..^1] + (isNextPeriod ? ";" : "");
+    }
+
+    private void CancelHomeGoal()
+    {
+        CancelGoal('H');
+    }
+
+    private void HomeGoal()
+    {
+        _matchResult += "H";
+    }
+
+    private void NextPeriod()
+    {
+        _matchResult += ";";
     }
 }
