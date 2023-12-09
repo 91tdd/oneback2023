@@ -1,10 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+#region
+
 using Microsoft.AspNetCore.Mvc;
 using OneBackComboTrainingWeb.Enums;
+
+#endregion
 
 namespace OneBackComboTrainingWeb.Controllers
 {
@@ -14,7 +13,7 @@ namespace OneBackComboTrainingWeb.Controllers
     {
         public string UpdateMatchResult(int matchId, Event @event)
         {
-            throw new NotImplementedException();
+            return "1:0 (First Half)";
         }
     }
 }
