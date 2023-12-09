@@ -56,6 +56,14 @@ public class MatchControllerTests
         RepoShouldUpdateMatchResult("HA;H");
     }
 
+    [Test]
+    public void cancel_home_goal()
+    {
+        GivenMatchResultFromRepo("HA;H");
+        AfterEventDisplayScoreShouldBe(Event.CancelHomeGoal, "1:1 (Second Half)");
+        RepoShouldUpdateMatchResult("HA;");
+    }
+
     private void RepoShouldUpdateMatchResult(string matchResult)
     {
         _matchRepo.Received(1).UpdateMatchResult(Arg.Is<Match>(match => match.MatchResult.GetResult() == matchResult));
