@@ -25,4 +25,9 @@ public class MatchResult
     {
         _matchResult += "H";
     }
+
+    public void AwayGoal()
+    {
+        throw new NotImplementedException();
+    }
 }

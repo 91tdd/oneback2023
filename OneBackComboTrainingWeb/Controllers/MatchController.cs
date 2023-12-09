@@ -22,7 +22,15 @@ namespace OneBackComboTrainingWeb.Controllers
         public string UpdateMatchResult(int matchId, Event @event)
         {
             var match = _matchRepo.GetMatch(matchId);
-            match.MatchResult.HomeGoal();
+            if (@event == Event.HomeGoal)
+            {
+                match.MatchResult.HomeGoal();
+            }
+            else if (@event == Event.AwayGoal)
+            {
+                match.MatchResult.AwayGoal();
+            }
+
             _matchRepo.UpdateMatchResult(match);
             return match.MatchResult.GetDisplayScore();
         }
