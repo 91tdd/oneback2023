@@ -2,5 +2,6 @@
 
 public enum Event
 {
-    HomeGoal=1,
+    HomeGoal = 1,
+    AwayGoal = 2,
 }

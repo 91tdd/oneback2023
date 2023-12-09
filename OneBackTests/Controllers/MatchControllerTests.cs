@@ -32,6 +32,14 @@ public class MatchControllerTests
         RepoShouldUpdateMatchResult("H");
     }
 
+    [Test]
+    public void away_goal()
+    {
+        GivenMatchResultFromRepo("H");
+        AfterEventDisplayScoreShouldBe(Event.AwayGoal, "1:1 (First Half)");
+        RepoShouldUpdateMatchResult("HA");
+    }
+
     private void RepoShouldUpdateMatchResult(string matchResult)
     {
         _matchRepo.Received(1).UpdateMatchResult(Arg.Is<Match>(match => match.MatchResult.GetResult() == matchResult));
