@@ -30,6 +30,11 @@ namespace OneBackComboTrainingWeb.Controllers
                 case Event.AwayGoal:
                     match.MatchResult.AwayGoal();
                     break;
+                case Event.NextPeriod:
+                    match.MatchResult.NextPeriod();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
             }
 
             _matchRepo.UpdateMatchResult(match);
