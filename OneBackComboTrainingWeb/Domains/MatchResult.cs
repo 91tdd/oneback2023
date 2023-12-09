@@ -8,4 +8,9 @@ public class MatchResult
     {
         _matchResult = matchResult;
     }
+
+    public void HomeGoal()
+    {
+        throw new NotImplementedException();
+    }
 }

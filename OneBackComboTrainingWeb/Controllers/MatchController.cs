@@ -21,6 +21,13 @@ namespace OneBackComboTrainingWeb.Controllers
 
         public string UpdateMatchResult(int matchId, Event @event)
         {
+            var match = _matchRepo.GetMatch(matchId);
+            match.MatchResult.HomeGoal();
+            return GetDisplayScore();
+        }
+
+        private static string GetDisplayScore()
+        {
             var homeScore = "1";
             var awayScore = "0";
             return $"{homeScore}:{awayScore} (First Half)";
