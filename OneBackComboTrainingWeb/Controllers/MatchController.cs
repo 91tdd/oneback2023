@@ -13,7 +13,9 @@ namespace OneBackComboTrainingWeb.Controllers
     {
         public string UpdateMatchResult(int matchId, Event @event)
         {
-            return "1:0 (First Half)";
+            var homeScore = "1";
+            var awayScore = "0";
+            return $"{homeScore}:{awayScore} (First Half)";
         }
     }
 }
