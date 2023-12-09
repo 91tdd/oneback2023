@@ -1,7 +1,6 @@
 #region
 
 using Microsoft.AspNetCore.Mvc;
-using OneBackComboTrainingWeb.Domains;
 using OneBackComboTrainingWeb.Enums;
 using OneBackComboTrainingWeb.Repos;
 
@@ -23,34 +22,10 @@ namespace OneBackComboTrainingWeb.Controllers
         public string UpdateMatchResult(int matchId, Event @event)
         {
             var match = _matchRepo.GetMatch(matchId);
-            UpdateBy(@event, match.MatchResult);
+            match.MatchResult.UpdateBy(@event);
 
             _matchRepo.UpdateMatchResult(match);
             return match.MatchResult.GetDisplayScore();
-        }
-
-        private static void UpdateBy(Event @event, MatchResult matchResult)
-        {
-            switch (@event)
-            {
-                case Event.HomeGoal:
-                    matchResult.HomeGoal();
-                    break;
-                case Event.AwayGoal:
-                    matchResult.AwayGoal();
-                    break;
-                case Event.NextPeriod:
-                    matchResult.NextPeriod();
-                    break;
-                case Event.CancelHomeGoal:
-                    matchResult.CancelHomeGoal();
-                    break;
-                case Event.CancelAwayGoal:
-                    matchResult.CancelAwayGoal();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
-            }
         }
     }
 }

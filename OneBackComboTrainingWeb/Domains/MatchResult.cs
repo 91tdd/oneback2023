@@ -1,5 +1,6 @@
 ﻿#region
 
+using OneBackComboTrainingWeb.Enums;
 using OneBackComboTrainingWeb.Exceptions;
 
 #endregion
@@ -68,5 +69,29 @@ public class MatchResult
         }
 
         _matchResult = _matchResult[..^1] + (isNextPeriod ? ";" : "");
+    }
+
+    public void UpdateBy(Event @event)
+    {
+        switch (@event)
+        {
+            case Event.HomeGoal:
+                HomeGoal();
+                break;
+            case Event.AwayGoal:
+                AwayGoal();
+                break;
+            case Event.NextPeriod:
+                NextPeriod();
+                break;
+            case Event.CancelHomeGoal:
+                CancelHomeGoal();
+                break;
+            case Event.CancelAwayGoal:
+                CancelAwayGoal();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
+        }
     }
 }
