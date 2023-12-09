@@ -22,13 +22,14 @@ namespace OneBackComboTrainingWeb.Controllers
         public string UpdateMatchResult(int matchId, Event @event)
         {
             var match = _matchRepo.GetMatch(matchId);
-            if (@event == Event.HomeGoal)
+            switch (@event)
             {
-                match.MatchResult.HomeGoal();
-            }
-            else if (@event == Event.AwayGoal)
-            {
-                match.MatchResult.AwayGoal();
+                case Event.HomeGoal:
+                    match.MatchResult.HomeGoal();
+                    break;
+                case Event.AwayGoal:
+                    match.MatchResult.AwayGoal();
+                    break;
             }
 
             _matchRepo.UpdateMatchResult(match);
