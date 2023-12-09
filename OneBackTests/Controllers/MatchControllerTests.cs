@@ -66,6 +66,14 @@ public class MatchControllerTests
     }
 
     [Test]
+    public void cancel_away_goal()
+    {
+        GivenMatchResultFromRepo("HA;A");
+        AfterEventDisplayScoreShouldBe(Event.CancelAwayGoal, "1:1 (Second Half)");
+        RepoShouldUpdateMatchResult("HA;");
+    }
+
+    [Test]
     public void cancel_1st_half_last_home_goal_when_2nd_half_start()
     {
         GivenMatchResultFromRepo("HAH;");
