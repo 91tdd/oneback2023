@@ -40,6 +40,14 @@ public class MatchControllerTests
         RepoShouldUpdateMatchResult("HA");
     }
 
+    [Test]
+    public void next_period()
+    {
+        GivenMatchResultFromRepo("HA");
+        AfterEventDisplayScoreShouldBe(Event.NextPeriod, "1:1 (Second Half)");
+        RepoShouldUpdateMatchResult("HA;");
+    }
+
     private void RepoShouldUpdateMatchResult(string matchResult)
     {
         _matchRepo.Received(1).UpdateMatchResult(Arg.Is<Match>(match => match.MatchResult.GetResult() == matchResult));

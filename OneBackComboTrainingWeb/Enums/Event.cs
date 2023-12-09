@@ -4,4 +4,5 @@ public enum Event
 {
     HomeGoal = 1,
     AwayGoal = 2,
+    NextPeriod=3,
 }
