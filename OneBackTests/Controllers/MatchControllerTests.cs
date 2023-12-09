@@ -5,6 +5,7 @@ using NSubstitute;
 using OneBackComboTrainingWeb.Controllers;
 using OneBackComboTrainingWeb.Domains;
 using OneBackComboTrainingWeb.Enums;
+using OneBackComboTrainingWeb.Exceptions;
 using OneBackComboTrainingWeb.Repos;
 
 #endregion
@@ -62,6 +63,14 @@ public class MatchControllerTests
         GivenMatchResultFromRepo("HA;H");
         AfterEventDisplayScoreShouldBe(Event.CancelHomeGoal, "1:1 (Second Half)");
         RepoShouldUpdateMatchResult("HA;");
+    }
+
+    [Test]
+    public void cancel_home_goal_fail()
+    {
+        GivenMatchResultFromRepo("HA;A");
+        Action action = () => _matchController.UpdateMatchResult(91, Event.CancelHomeGoal);
+        action.Should().Throw<MatchResultException>();
     }
 
     private void RepoShouldUpdateMatchResult(string matchResult)
