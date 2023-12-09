@@ -9,10 +9,15 @@ public class MatchResult
         _matchResult = matchResult;
     }
 
+    public void AwayGoal()
+    {
+        _matchResult += "A";
+    }
+
     public string GetDisplayScore()
     {
         var homeScore = _matchResult.Count(c => c == 'H');
-        var awayScore = "0";
+        var awayScore = _matchResult.Count(c => c == 'A');
         return $"{homeScore}:{awayScore} (First Half)";
     }
 
@@ -24,10 +29,5 @@ public class MatchResult
     public void HomeGoal()
     {
         _matchResult += "H";
-    }
-
-    public void AwayGoal()
-    {
-        throw new NotImplementedException();
     }
 }
