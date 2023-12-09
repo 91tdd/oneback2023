@@ -22,14 +22,12 @@ public class MatchResult
 
     public void CancelHomeGoal()
     {
-        if (_matchResult.EndsWith('H'))
-        {
-            _matchResult = _matchResult[..^1];
-        }
-        else
+        if (!_matchResult.EndsWith('H'))
         {
             throw new MatchResultException() { MatchResult = this };
         }
+
+        _matchResult = _matchResult[..^1];
     }
 
     public string GetDisplayScore()
