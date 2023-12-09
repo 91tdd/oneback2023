@@ -28,7 +28,7 @@ public class MatchResult
         }
         else
         {
-            throw new MatchResultException();
+            throw new MatchResultException() { MatchResult = this };
         }
     }
 
