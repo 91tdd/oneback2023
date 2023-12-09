@@ -48,6 +48,14 @@ public class MatchControllerTests
         RepoShouldUpdateMatchResult("HA;");
     }
 
+    [Test]
+    public void home_goal_when_2nd_period()
+    {
+        GivenMatchResultFromRepo("HA;");
+        AfterEventDisplayScoreShouldBe(Event.HomeGoal, "2:1 (Second Half)");
+        RepoShouldUpdateMatchResult("HA;H");
+    }
+
     private void RepoShouldUpdateMatchResult(string matchResult)
     {
         _matchRepo.Received(1).UpdateMatchResult(Arg.Is<Match>(match => match.MatchResult.GetResult() == matchResult));
