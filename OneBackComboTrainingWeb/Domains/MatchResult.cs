@@ -21,4 +21,9 @@ public class MatchResult
     {
         _matchResult += "H";
     }
+
+    public string GetResult()
+    {
+        throw new NotImplementedException();
+    }
 }
