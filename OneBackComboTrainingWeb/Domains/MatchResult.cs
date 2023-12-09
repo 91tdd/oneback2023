@@ -13,4 +13,11 @@ public class MatchResult
     {
         throw new NotImplementedException();
     }
+
+    public string GetDisplayScore()
+    {
+        var homeScore = "1";
+        var awayScore = "0";
+        return $"{homeScore}:{awayScore} (First Half)";
+    }
 }

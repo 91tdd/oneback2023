@@ -1,7 +1,6 @@
 #region
 
 using Microsoft.AspNetCore.Mvc;
-using OneBackComboTrainingWeb.Domains;
 using OneBackComboTrainingWeb.Enums;
 using OneBackComboTrainingWeb.Repos;
 
@@ -24,14 +23,7 @@ namespace OneBackComboTrainingWeb.Controllers
         {
             var match = _matchRepo.GetMatch(matchId);
             match.MatchResult.HomeGoal();
-            return GetDisplayScore(match.MatchResult);
-        }
-
-        private static string GetDisplayScore(MatchResult matchMatchResult)
-        {
-            var homeScore = "1";
-            var awayScore = "0";
-            return $"{homeScore}:{awayScore} (First Half)";
+            return match.MatchResult.GetDisplayScore();
         }
     }
 }
