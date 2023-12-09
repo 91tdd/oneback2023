@@ -28,19 +28,6 @@ public class MatchResult
     public void CancelHomeGoal()
     {
         CancelGoal('H');
-        // var isNextPeriod = false;
-        // if (_matchResult.EndsWith(';'))
-        // {
-        //     isNextPeriod = true;
-        //     _matchResult = _matchResult[..^1];
-        // }
-        //
-        // if (!_matchResult.EndsWith('H'))
-        // {
-        //     throw new MatchResultException() { MatchResult = this };
-        // }
-        //
-        // _matchResult = _matchResult[..^1] + (isNextPeriod ? ";" : "");
     }
 
     public string GetDisplayScore()
