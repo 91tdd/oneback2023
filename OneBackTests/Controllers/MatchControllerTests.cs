@@ -29,7 +29,12 @@ public class MatchControllerTests
     {
         GivenMatchResultFromRepo("");
         AfterEventDisplayScoreShouldBe(Event.HomeGoal, "1:0 (First Half)");
-        _matchRepo.Received(1).UpdateMatchResult(Arg.Is<Match>(match => match.MatchResult.GetResult() == "H"));
+        RepoShouldUpdateMatchResult("H");
+    }
+
+    private void RepoShouldUpdateMatchResult(string matchResult)
+    {
+        _matchRepo.Received(1).UpdateMatchResult(Arg.Is<Match>(match => match.MatchResult.GetResult() == matchResult));
     }
 
     private void AfterEventDisplayScoreShouldBe(Event @event, string expected)
