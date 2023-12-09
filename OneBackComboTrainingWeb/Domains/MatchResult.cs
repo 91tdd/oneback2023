@@ -22,19 +22,7 @@ public class MatchResult
 
     public void CancelAwayGoal()
     {
-        var isNextPeriod = false;
-        if (_matchResult.EndsWith(';'))
-        {
-            isNextPeriod = true;
-            _matchResult = _matchResult[..^1];
-        }
-
-        if (!_matchResult.EndsWith('A'))
-        {
-            throw new MatchResultException() { MatchResult = this };
-        }
-
-        _matchResult = _matchResult[..^1] + (isNextPeriod ? ";" : "");
+        CancelGoal('A');
     }
 
     public void CancelHomeGoal()
@@ -75,5 +63,22 @@ public class MatchResult
     public void NextPeriod()
     {
         _matchResult += ";";
+    }
+
+    private void CancelGoal(char score)
+    {
+        var isNextPeriod = false;
+        if (_matchResult.EndsWith(';'))
+        {
+            isNextPeriod = true;
+            _matchResult = _matchResult[..^1];
+        }
+
+        if (!_matchResult.EndsWith(score))
+        {
+            throw new MatchResultException() { MatchResult = this };
+        }
+
+        _matchResult = _matchResult[..^1] + (isNextPeriod ? ";" : "");
     }
 }
