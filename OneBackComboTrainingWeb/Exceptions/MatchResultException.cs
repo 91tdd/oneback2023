@@ -1,4 +1,6 @@
-﻿namespace OneBackComboTrainingWeb.Exceptions;
+﻿using OneBackComboTrainingWeb.Domains;
+
+namespace OneBackComboTrainingWeb.Exceptions;
 
 public class MatchResultException: Exception
 {
@@ -13,4 +15,6 @@ public class MatchResultException: Exception
     public MatchResultException(string? message, Exception? innerException) : base(message, innerException)
     {
     }
+
+    public MatchResult MatchResult { get; set; }
 }

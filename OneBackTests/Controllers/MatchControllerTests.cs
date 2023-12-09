@@ -70,7 +70,9 @@ public class MatchControllerTests
     {
         GivenMatchResultFromRepo("HA;A");
         Action action = () => _matchController.UpdateMatchResult(91, Event.CancelHomeGoal);
-        action.Should().Throw<MatchResultException>();
+        action.Should()
+              .Throw<MatchResultException>()
+              .Where(e => e.MatchResult.GetResult() == "HA;A");
     }
 
     private void RepoShouldUpdateMatchResult(string matchResult)
