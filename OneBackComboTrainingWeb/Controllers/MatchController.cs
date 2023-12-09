@@ -33,6 +33,9 @@ namespace OneBackComboTrainingWeb.Controllers
                 case Event.NextPeriod:
                     match.MatchResult.NextPeriod();
                     break;
+                case Event.CancelHomeGoal:
+                    match.MatchResult.CancelHomeGoal();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(@event), @event, null);
             }

@@ -14,6 +14,11 @@ public class MatchResult
         _matchResult += "A";
     }
 
+    public void CancelHomeGoal()
+    {
+        _matchResult = _matchResult[..^1];
+    }
+
     public string GetDisplayScore()
     {
         var homeScore = _matchResult.Count(c => c == 'H');
