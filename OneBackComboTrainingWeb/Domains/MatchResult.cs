@@ -12,18 +12,17 @@ public class MatchResult
     public string GetDisplayScore()
     {
         var homeScore = _matchResult.Count(c => c == 'H');
-        // var homeScore = "1";
         var awayScore = "0";
         return $"{homeScore}:{awayScore} (First Half)";
+    }
+
+    public string GetResult()
+    {
+        return _matchResult;
     }
 
     public void HomeGoal()
     {
         _matchResult += "H";
-    }
-
-    public string GetResult()
-    {
-        throw new NotImplementedException();
     }
 }

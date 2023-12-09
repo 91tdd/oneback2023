@@ -23,6 +23,7 @@ namespace OneBackComboTrainingWeb.Controllers
         {
             var match = _matchRepo.GetMatch(matchId);
             match.MatchResult.HomeGoal();
+            _matchRepo.UpdateMatchResult(match);
             return match.MatchResult.GetDisplayScore();
         }
     }
